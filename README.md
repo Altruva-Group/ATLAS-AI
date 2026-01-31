@@ -43,8 +43,7 @@ It is my desire to connect AI using this repo to these fields (and many more):
 8. Security
 9. Retail
 10. Transportation
-
-and many more (that will be added).
+    <br>and many more (that will be added).
 
 ## AUTHOR
 
