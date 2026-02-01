@@ -10,7 +10,7 @@ This project is for professionals who have gone through the [Lineage](https://gi
 
 #### IMPORTANT
 
-Please do not contribute to this project untill you have gone through the entire `Lineage` tutorials and guides.
+Please do not contribute to this project until you have gone through the entire `Lineage` tutorials and guides.
 
 ## PROJECT AIM
 
