@@ -1,5 +1,5 @@
 """
-    A Classical 8x8 Chess Board (with simplified rules)
+    A Classical 8x8 Chess Game (with simplified rules)
     - Character-based pieces
     - No sophisticated moves (castling, en passant, promotion, etc.)
     - Game ends when kind is captured.
