@@ -16,7 +16,7 @@ Move = Tuple[Position, Position]  # ((from_row, from _col), (to_row, to_col))
 
 class Board:
     """
-    A Classical 8x8 Chess Board
+     Chess Board Class
     """
 
     def __init__(self) -> None:
