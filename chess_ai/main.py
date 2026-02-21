@@ -17,7 +17,7 @@ def main() -> None:
 
     print("Welcome to the ATLAS AI!")
     print("This is the Classical AI Chapter's Production Agent")
-    print(""*3)
+    print("")
 
     print("----------------")
     print("Starting New Game")
