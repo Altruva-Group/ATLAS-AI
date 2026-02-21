@@ -20,22 +20,26 @@ class Board:
     def __init__(self) -> None:
         self.board: List[List[str]] = self._create_initial_board()
         self.turn: str = "white"  # white starts
-        self.white_king_pos: Position = (7, 4)
-        self.black_king_pos: Position = (0, 4)
+        self.white_king_pos: Position = (7, 4)  # index 0
+        self.black_king_pos: Position = (0, 4)  # index 0
         self.move_history: List[Tuple[Move, str]] = []
 
     def _create_initial_board(self) -> List[List[str]]:
-        """
-        Create the initial state of the board
-        """
+        """ Create the initial state of the board """
 
-        return [
-            ["r", "n", "b", "q", "k", "b", "n", "r"],
-            ["p", "p", "p", "p", "p", "p", "p", "p"],
-            [".", ".", ".", ".", ".", ".", ".", "."],
-            [".", ".", ".", ".", ".", ".", ".", "."],
-            [".", ".", ".", ".", ".", ".", ".", "."],
-            [".", ".", ".", ".", ".", ".", ".", "."],
-            ["P", "P", "P", "P", "P", "P", "P", "P"],
-            ["R", "N", "B", "Q", "K", "B", "N", "R"],
-        ]
+        board = [["." for _ in range(8)] for _ in range(8)]
+
+        # board pieces
+        board[0] = ["r", "n", "b", "q", "k", "b", "n", "r"]  # black pieces
+        board[1] = ["p"] * 8  # black pawns
+        board[6] = ["P"] * 8  # white pawns
+        board[7] = ["R", "N", "B", "Q", "K", "B", "N", "R"]  # white pieces
+
+        return board
+
+    def print_board(self) -> None:
+        """ Print the chess board """
+        print("\n  a b c d e f g h")
+        for i, row in enumerate(self.board):
+            print(8 - i, " ".join(row), i + 1)
+        print("  a b c d e f g h\n")

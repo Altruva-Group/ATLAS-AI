@@ -23,7 +23,7 @@ def main() -> None:
     print("Starting New Game")
     print("----------------")
 
-    print(board.board)
+    print(board.print_board())
 
 
 if __name__ == "__main__":
