@@ -45,7 +45,6 @@ def main() -> None:
 
     # Evaluate move (for Black)
     print("Evaluating board state from Black")
-    board.make_move(((1, 4), (3, 4)))
     print(evaluate.evaluate())
 
     print("================================")
