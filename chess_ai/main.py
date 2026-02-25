@@ -43,6 +43,7 @@ def main() -> None:
     print("Generating moves for white:")
     print(move.generate_all_moves())
 
+    # Evaluate move (for Black)
     print(evaluate.evaluate())
 
     print("================================")
