@@ -44,6 +44,7 @@ def main() -> None:
     print(move.generate_all_moves())
 
     # Evaluate move (for Black)
+    print("Evaluating board state from Black")
     print(evaluate.evaluate())
 
     print("================================")
