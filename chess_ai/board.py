@@ -166,9 +166,23 @@ class Board:
         """ Check if the game is over (king captured) """
         return self.get_piece(self.white_king_pos) == "." or self.get_piece(self.black_king_pos) == "."
 
+    # Diplay Methods
     def print_board(self) -> None:
         """ Print the chess board """
         print("\n  a b c d e f g h")
         for i, row in enumerate(self.board):
             print(8 - i, " ".join(row), i + 1)
         print("  a b c d e f g h\n")
+
+    # Turn Helpers
+    def get_current_player(self) -> str:
+        """ Get the current player's color """
+        return self.turn
+    
+    def is_white_turn(self) -> bool:
+        """ Check if it's white's turn """
+        return self.turn == "white"
+    
+    def is_black_turn(self) -> bool:
+        """ Check if it's black's turn """
+        return self.turn == "black"
