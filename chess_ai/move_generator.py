@@ -8,7 +8,7 @@
 """
 
 from typing import List, Tuple
-from board import Board, Position, Move
+from board import Board, Move       # Position
 
 
 class MoveGenerator:
@@ -40,17 +40,17 @@ class MoveGenerator:
         """ Generate moves for a specific piece """
         piece_type = piece.lower()
 
-        if piece.lower() == "p":
+        if piece_type.lower() == "p":
             return self._pawn_moves(piece, row, col)
-        elif piece.lower() == "r":
+        elif piece_type.lower() == "r":
             return self._rook_moves(piece, row, col)
-        elif piece.lower() == "n":
+        elif piece_type.lower() == "n":
             return self._knight_moves(piece, row, col)
-        elif piece.lower() == "b":
+        elif piece_type.lower() == "b":
             return self._bishop_moves(piece, row, col)
-        elif piece.lower() == "q":
+        elif piece_type.lower() == "q":
             return self._queen_moves(piece, row, col)
-        elif piece.lower() == "k":
+        elif piece_type.lower() == "k":
             return self._king_moves(piece, row, col)
         else:
             return []
