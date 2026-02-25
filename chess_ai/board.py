@@ -43,3 +43,57 @@ class Board:
         for i, row in enumerate(self.board):
             print(8 - i, " ".join(row), i + 1)
         print("  a b c d e f g h\n")
+
+    # Board Utility Methods
+    def is_within_bounds(self, row: int, col: int) -> bool:
+        """ Check if a position is within the board boundaries """
+        return 0 <= row < 8 and 0 <= col < 8
+    
+    def get_piece(self, position: Position) -> str: 
+        """ Get the piece at a given position """
+        row, col = position
+        if self.is_within_bounds(row, col):
+            return self.board[row][col]
+        return None  # Out of bounds
+    
+    def set_piece(self, position: Position, piece: str) -> None:
+        """ Set a piece at a given position """
+        row, col = position
+        if self.is_within_bounds(row, col):
+            self.board[row][col] = piece
+
+    def clone(self) -> 'Board':
+        """ Create a deep copy of the board """
+        new_board = Board()
+        new_board.board = deepcopy(self.board)
+        new_board.turn = self.turn
+        new_board.white_king_pos = self.white_king_pos
+        new_board.black_king_pos = self.black_king_pos
+        new_board.move_history = deepcopy(self.move_history)
+        return new_board
+    
+    # move execution
+    def make_move(self, move: Move) -> Optional[str]:
+        """ Execute a move on the board and return any captured piece """
+        
+        (from_row, from_col), (to_row, to_col) = move
+        piece = self.get_piece((from_row, from_col))
+        captured_piece = self.get_piece((to_row, to_col))
+
+        # Move the piece
+        self.set_piece((to_row, to_col), piece)
+        self.set_piece((from_row, from_col), ".")
+
+        # Update king position if needed
+        if piece == "K":
+            self.white_king_pos = (to_row, to_col)
+        elif piece == "k":
+            self.black_king_pos = (to_row, to_col)
+
+        # Switch turn
+        self.turn = "black" if self.turn == "white" else "white"
+
+        # Record move history
+        self.move_history.append((move, captured_piece))
+
+        return captured_piece
