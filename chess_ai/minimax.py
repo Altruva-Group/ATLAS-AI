@@ -15,3 +15,6 @@ class Minimax:
     """ Implement the Minimax algorithm """
     def __init__(self, depth: int = 3) -> None:
         self.max_depth = depth
+
+    # Public API
+    
