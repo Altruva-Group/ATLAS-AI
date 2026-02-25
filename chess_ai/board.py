@@ -75,8 +75,8 @@ class Board:
     # move execution
     def make_move(self, move: Move) -> Optional[str]:
         """ Execute a move on the board and return any captured piece """
-        
         (from_row, from_col), (to_row, to_col) = move
+
         piece = self.get_piece((from_row, from_col))
         captured_piece = self.get_piece((to_row, to_col))
 
@@ -90,10 +90,39 @@ class Board:
         elif piece == "k":
             self.black_king_pos = (to_row, to_col)
 
-        # Switch turn
-        self.turn = "black" if self.turn == "white" else "white"
-
         # Record move history
         self.move_history.append((move, captured_piece))
 
-        return captured_piece
+        # Switch turn
+        self._switch_turn()
+
+        return captured_piece if captured_piece != "." else None
+    
+    def undo_move(self) -> None:
+        """ Undo the last move made on the board """
+        if not self.move_history:
+            return  # No moves to undo
+
+        last_move, captured_piece = self.move_history.pop()
+        (from_row, from_col), (to_row, to_col) = last_move
+
+        moved_piece = self.get_piece((to_row, to_col))
+
+        # Move the piece back
+        self.set_piece((from_row, from_col), moved_piece)
+
+        # Restore captured piece if there was one
+        self.set_piece((to_row, to_col), captured_piece if captured_piece else ".")
+
+        # Update king position if needed
+        if moved_piece == "K":
+            self.white_king_pos = (from_row, from_col)
+        elif moved_piece == "k":
+            self.black_king_pos = (from_row, from_col)
+
+        # Switch turn back
+        self._switch_turn()
+
+    def _switch_turn(self) -> None:
+        """ Switch the current player's turn """
+        self.turn = "black" if self.turn == "white" else "white"

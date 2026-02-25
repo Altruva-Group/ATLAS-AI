@@ -19,11 +19,17 @@ def main() -> None:
     print("This is the Classical AI Chapter's Production Agent")
     print("")
 
-    print("----------------")
-    print("Starting New Game")
-    print("----------------")
+    print("================================")
+    print("       Starting New Game")
+    print("================================")
 
     print(board.print_board())
+
+    print(board.move_history)
+
+    print("================================")
+    print(" Game Over! Thanks for playing.")
+    print("================================")
 
 
 if __name__ == "__main__":
