@@ -14,7 +14,7 @@ from board import Board, Position, Move
 class MoveGenerator:
     """ Generates pseudo-legal moves (ignores check conditions) """
 
-    def __inti__(self, board: Board) -> None:
+    def __init__(self, board: Board) -> None:
         self.board = board
 
     # public API
@@ -78,7 +78,7 @@ class MoveGenerator:
 
         return moves
 
-    # Sliding Piece (Rook, Bishop, Queen)
+    # Sliding Pieces (Rook, Bishop, Queen)
     def _rook_moves(self, piece: str, row: int, col: int) -> List[Move]:
         """ Generate moves for rook """
         return self._sliding_moves(piece, row, col, directions=[
@@ -128,4 +128,56 @@ class MoveGenerator:
         return moves
     
     # Knight moves
+    def _knight_moves(self, piece: str, row: int, col: int) -> List[Move]:
+        """ Generate moves for knight """
+        moves: List[Move] = []
+
+        knight_offsets = [
+            (-2, -1), (-2, 1),
+            (-1, -2), (-1, 2),
+            (1, -2), (1, 2),
+            (2, -1), (2, 1)
+        ]
+
+        for d_row, d_col in knight_offsets:
+            new_row = row + d_row
+            new_col = col + d_col
+
+            if self.board.is_within_bounds(new_row, new_col):
+                target = self.board.board[new_row][new_col]
+                if target == "." or not self._same_color(piece, target):
+                    moves.append(((row, col), (new_row, new_col)))
+
+        return moves
+    
+    # King moves
+    def _king_moves(self, piece: str, row: int, col: int) -> List[Move]:
+        """ Generate moves for king """
+        moves: List[Move] = []
+
+        for d_row in [-1, 0, 1]:
+            for d_col in [-1, 0, 1]:
+                if d_row == 0 and d_col == 0:
+                    continue # skip no-move
+
+                new_row = row + d_row
+                new_col = col + d_col
+
+                if self.board.is_within_bounds(new_row, new_col):
+                    target = self.board.board[new_row][new_col]
+                    if target == "." or not self._same_color(piece, target):
+                        moves.append(((row, col), (new_row, new_col)))
+        
+        return moves
+    
+    # Helpers
+    def _belongs_to_current_player(self, piece: str) -> bool:
+        """ Check if piece belong to current player """
+        if self.board.is_white_turn():
+            return piece.isupper()
+        return piece.islower()
+    
+    def _same_color(self, piece1: str, piece2: str) -> bool:
+        return (piece1.isupper() and piece2.isupper()) or \
+                (piece1.islower() and piece2.islower())
 
