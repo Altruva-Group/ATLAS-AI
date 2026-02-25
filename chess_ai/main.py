@@ -7,6 +7,7 @@
 
 from board import Board
 from move_generator import MoveGenerator
+from evaluation import Evaluator
 
 
 def main() -> None:
@@ -16,6 +17,7 @@ def main() -> None:
 
     board = Board()
     move = MoveGenerator(board)
+    evaluate = Evaluator(board)
 
     print("Welcome to the ATLAS AI!")
     print("This is the Classical AI Chapter's Production Agent")
@@ -40,6 +42,8 @@ def main() -> None:
     # move generation testing
     print("Generating moves for white:")
     print(move.generate_all_moves())
+
+    print(evaluate.evaluate())
 
     print("================================")
     print(" Game Over! Thanks for playing.")
