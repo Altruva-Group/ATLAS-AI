@@ -136,32 +136,6 @@ class Board:
                         return True
         return False
     
-    def _can_attack(self, from_pos: Position, to_pos: Position) -> bool:
-        """ Check if a piece at from_pos can attack to_pos (simplified) """
-        piece = self.get_piece(from_pos)
-        if piece == ".":
-            return False
-        
-        # Simplified attack logic (only basic moves, no special rules)
-        row_diff = to_pos[0] - from_pos[0]
-        col_diff = to_pos[1] - from_pos[1]
-
-        if piece.lower() == "p":  # Pawn
-            direction = -1 if piece.isupper() else 1
-            return row_diff == direction and abs(col_diff) == 1
-        elif piece.lower() == "n":  # Knight
-            return (abs(row_diff), abs(col_diff)) in [(2, 1), (1, 2)]
-        elif piece.lower() == "b":  # Bishop
-            return abs(row_diff) == abs(col_diff)
-        elif piece.lower() == "r":  # Rook
-            return row_diff == 0 or col_diff == 0
-        elif piece.lower() == "q":  # Queen
-            return row_diff == 0 or col_diff == 0 or abs(row_diff) == abs(col_diff)
-        elif piece.lower() == "k":  # King
-            return max(abs(row_diff), abs(col_diff)) == 1
-        
-        return False
-    
     def is_game_over(self) -> bool:
         """ Check if the game is over (king captured) """
         return self.get_piece(self.white_king_pos) == "." or self.get_piece(self.black_king_pos) == "."
