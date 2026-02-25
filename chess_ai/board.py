@@ -122,23 +122,10 @@ class Board:
 
 
     # Game State Evaluation
-    def is_in_check(self, color: str) -> bool:
-        """ Check if the given color's king is in check """
-        king_pos = self.white_king_pos if color == "white" else self.black_king_pos
-        opponent_color = "black" if color == "white" else "white"
-
-        # Check for attacks from opponent pieces
-        for row in range(8):
-            for col in range(8):
-                piece = self.get_piece((row, col))
-                if piece != "." and ((piece.isupper() and opponent_color == "white") or (piece.islower() and opponent_color == "black")):
-                    if self._can_attack((row, col), king_pos):
-                        return True
-        return False
-    
     def is_game_over(self) -> bool:
         """ Check if the game is over (king captured) """
         return self.get_piece(self.white_king_pos) == "." or self.get_piece(self.black_king_pos) == "."
+    
 
     # Diplay Methods
     def print_board(self) -> None:
