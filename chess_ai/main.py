@@ -27,6 +27,8 @@ def main() -> None:
 
     print(board.move_history)
 
+   
+
     print("================================")
     print(" Game Over! Thanks for playing.")
     print("================================")
