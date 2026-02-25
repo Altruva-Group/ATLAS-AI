@@ -77,3 +77,55 @@ class MoveGenerator:
                     moves.append(((row, col), (forward_row, capture_col)))
 
         return moves
+
+    # Sliding Piece (Rook, Bishop, Queen)
+    def _rook_moves(self, piece: str, row: int, col: int) -> List[Move]:
+        """ Generate moves for rook """
+        return self._sliding_moves(piece, row, col, directions=[
+            (-1, 0), (1, 0), (0, -1), (0, 1)
+        ])
+    
+    def _bishop_moves(self, piece: str, row: int, col: int) -> List[Move]:
+        """ Generate moves for bishop """
+        return self._sliding_moves(piece, row, col, directions=[
+            (-1, -1), (-1, 1), (1, -1), (1, 1)
+        ])
+    
+    def _queen_moves(self, piece: str, row: int, col: int) -> List[Move]:
+        """ Generate moves for queen """
+        return self._sliding_moves(piece, row, col, directions=[
+            (-1, 0), (1, 0), (0, -1), (0, 1),
+            (-1, -1), (-1, 1), (1, -1), (1, 1)
+        ])
+    
+    def _sliding_moves(
+        self,
+        piece: str,
+        row: int,
+        col: int,
+        directions: List[Tuple[int, int]]
+    ) -> List[Move]: 
+        """ Generate moves for sliding pieces """
+        moves: List[Move] = []
+
+        for d_row, d_col in directions:
+            current_row = row + d_row
+            current_col = col + d_col
+
+            while self.board.is_within_bounds(current_row, current_col):
+                target = self.board.board[current_row][current_col]
+
+                if target == ".":
+                    moves.append(((row, col), (current_row, current_col)))
+                else:
+                    if not self._same_color(piece, target):
+                        moves.append(((row, col), (current_row, current_col)))
+                    break  # blocked by piece from same player
+
+                current_row += d_row
+                current_col += d_col
+
+        return moves
+    
+    # Knight moves
+
