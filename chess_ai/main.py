@@ -19,11 +19,23 @@ def main() -> None:
     print("This is the Classical AI Chapter's Production Agent")
     print("")
 
-    print("----------------")
-    print("Starting New Game")
-    print("----------------")
+    print("================================")
+    print("       Starting New Game")
+    print("================================")
 
     print(board.print_board())
+    print(board.move_history)
+
+    print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
+
+    print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
+    
+    print(board.move_history)
+    print(board.print_board())
+
+    print("================================")
+    print(" Game Over! Thanks for playing.")
+    print("================================")
 
 
 if __name__ == "__main__":
