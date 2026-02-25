@@ -33,6 +33,8 @@ def main() -> None:
     print(board.move_history)
     print(board.print_board())
 
+    print(board.is_game_over())
+
     print("================================")
     print(" Game Over! Thanks for playing.")
     print("================================")
