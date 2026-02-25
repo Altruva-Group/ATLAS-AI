@@ -107,7 +107,7 @@ class Board:
         # Restore captured piece if there was one
         self.set_piece((to_row, to_col), captured_piece if captured_piece else ".")
 
-        # Update king position if needed
+        # Restore king position if needed
         if moved_piece == "K":
             self.white_king_pos = (from_row, from_col)
         elif moved_piece == "k":
