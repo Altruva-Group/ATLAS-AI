@@ -31,4 +31,24 @@ class Minimax:
         if not moves:
             return None  # No moves available, game over
 
+        for move in moves:
+            board.make_move(move)
+
+            score = self._minimax(board, depth=1)
+
+            board.undo_move()
+
+            if score > best_score:
+                best_score = score
+                best_move = move
+
+        return best_move
+    
+    # Core Minimax logic
+    def _minimax(self, board: Board, depth: int) -> int:
+        """ Recursive minimax search """
+
+        # terminal condition
+        
+
 
