@@ -62,7 +62,7 @@ class ChessEngine:
     # AI move  (Black) handling
     def _make_ai_move(self) -> Optional[Move]:
         """ 
-            Compute and make the best move for the AI (Black) 
+            Automatically executes AI move if it's Black's turn. 
             Returns:
                 - The move made by the AI, or None if no moves available
         """
