@@ -8,16 +8,45 @@
 """
 
 from typing import Optional, Tuple
-from engine import Engine
+from engine import ChessEngine
 from board import Move
 
 
 class ChessCLI:
-    """ Command Line INterface for the Chess Game """
+    """ Command Line Interface for the Chess Game """
 
     def __init__(self, depth: int = 3) -> None:
-        self.engine = Engine(depth=depth)
+        self.engine = ChessEngine(depth=depth)
 
     # Main loop
     def start(self) -> None:
-        print()
+        """ Main loop to run the CLI """
+
+        print("You are White (Uppercase), AI is Black (lowercase).")
+        print("Enter moves in format: e2e4 (move piece from e2 to e4)")
+        print("Game ends when a king is captured. Good luck!\n")
+
+        while not self.engine.is_game_over():
+            print(self.engine.print_board())
+
+            move_input = input("Your move: ").strip()
+            parsed_move = self._parse_move(move_input)
+
+            if parsed_move is None:
+                print("Invalid move format. Please use format like: e2e4.\n")
+                continue
+
+            success = self.engine.make_human_move(parsed_move)
+
+            if not success:
+                print("Illegal move. Please try again.\n")
+                continue
+
+        # Game over
+        self.engine.print_board()
+        
+
+    # Parsing user input
+    def _parse_move(self, move_str: str) -> Optional[Move]:
+        """ Parse user input move string into Move format """
+        
