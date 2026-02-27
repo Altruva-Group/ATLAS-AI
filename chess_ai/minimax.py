@@ -49,6 +49,9 @@ class Minimax:
         """ Recursive minimax search """
 
         # terminal condition
-        
+        if depth == self.max_depth or board.is_game_over():
+            evaluator = Evaluator(board)
+            return evaluator.evaluate()
+
 
 
