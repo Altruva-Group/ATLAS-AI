@@ -29,9 +29,9 @@ def main() -> None:
     print(board.print_board())
     print(board.move_history)
 
-    # print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
+    print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
 
-    print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
+    # print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
 
     # minimax testing
     print("AI is thinking...")

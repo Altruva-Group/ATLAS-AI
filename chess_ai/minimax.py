@@ -6,7 +6,7 @@
     - White is minimizing player (Human)
 """
 
-from typing import Optional, Tuple, List
+from typing import Optional #, Tuple, List
 from board import Board, Move
 from move_generator import MoveGenerator
 from evaluation import Evaluator
