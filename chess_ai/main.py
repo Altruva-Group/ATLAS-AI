@@ -6,6 +6,8 @@
 """
 
 from board import Board
+from move_generator import MoveGenerator
+from evaluation import Evaluator
 
 
 def main() -> None:
@@ -14,6 +16,8 @@ def main() -> None:
     """
 
     board = Board()
+    move_generator = MoveGenerator(board)
+    evaluator = Evaluator(board)
 
     print("Welcome to the ATLAS AI!")
     print("This is the Classical AI Chapter's Production Agent")
@@ -23,17 +27,25 @@ def main() -> None:
     print("       Starting New Game")
     print("================================")
 
-    print(board.print_board())
-    print(board.move_history)
+    # print(board.print_board())
+    # print(board.move_history)
 
-    print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
+    # print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
 
-    print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
+    # print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
     
-    print(board.move_history)
-    print(board.print_board())
+    # print(board.move_history)
+    # print(board.print_board())
 
-    print(board.is_game_over())
+    # print(board.is_game_over())
+
+    # move generation testing
+    print("Generating moves for white:")
+    print(move_generator.generate_all_moves())
+
+    # Evaluate move (for Black)
+    print("Evaluating board state from Black")
+    print(evaluator.evaluate())
 
     print("================================")
     print(" Game Over! Thanks for playing.")
