@@ -6,7 +6,7 @@
     - White is minimizing player (Human)
 """
 
-from typing import Optional, Tuple, List
+from typing import Optional #, Tuple, List
 from board import Board, Move
 from move_generator import MoveGenerator
 from evaluation import Evaluator
@@ -52,6 +52,42 @@ class Minimax:
         if depth == self.max_depth or board.is_game_over():
             evaluator = Evaluator(board)
             return evaluator.evaluate()
+        
+        move_generator = MoveGenerator(board)
+        moves = move_generator.generate_all_moves()
+
+        if not moves:
+            evaluator = Evaluator(board)
+            return evaluator.evaluate()  # No moves, evaluate terminal state
+        
+        if board.is_black_turn():  
+            # Maximizing player (AI)
+            max_eval = float("-inf")
+
+            for move in moves:
+                board.make_move(move)
+                evaluation = self._minimax(board, depth + 1)
+                board.undo_move()
+
+                if evaluation > max_eval:
+                    max_eval = evaluation
+
+            return max_eval
+        else:
+            # Minimizing player (Human)
+            min_eval = float("inf")
+
+            for move in moves:
+                board.make_move(move)
+                evaluation = self._minimax(board, depth + 1)
+                board.undo_move()
+
+                if evaluation < min_eval:
+                    min_eval = evaluation
+
+            return min_eval
+
+
 
 
 

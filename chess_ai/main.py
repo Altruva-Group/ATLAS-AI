@@ -3,21 +3,17 @@
     - Character-based pieces
     - No sophisticated moves (castling, en passant, promotion, etc.)
     - Game ends when kind is captured.
+    - White (Uppercase) - Human
+    - Black (Lowercase) - AI
 """
 
-from board import Board
-from move_generator import MoveGenerator
-from evaluation import Evaluator
+from engine import ChessEngine
 
 
 def main() -> None:
     """
     Main function to run the chess game
     """
-
-    board = Board()
-    move_generator = MoveGenerator(board)
-    evaluator = Evaluator(board)
 
     print("Welcome to the ATLAS AI!")
     print("This is the Classical AI Chapter's Production Agent")
@@ -27,25 +23,10 @@ def main() -> None:
     print("       Starting New Game")
     print("================================")
 
-    # print(board.print_board())
-    # print(board.move_history)
+    engine = ChessEngine(depth=3)  # You can adjust depth for stronger/weaker AI
 
-    # print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
-
-    # print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
-    
-    # print(board.move_history)
-    # print(board.print_board())
-
-    # print(board.is_game_over())
-
-    # move generation testing
-    print("Generating moves for white:")
-    print(move_generator.generate_all_moves())
-
-    # Evaluate move (for Black)
-    print("Evaluating board state from Black")
-    print(evaluator.evaluate())
+    # print board at the initial startup
+    print(engine.print_board())
 
     print("================================")
     print(" Game Over! Thanks for playing.")
