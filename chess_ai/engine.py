@@ -30,4 +30,4 @@ class ChessEngine:
     
     def print_board(self) -> None:
         """ Print the current board state """
-        self.board.print_board()
+        return self.board.print_board()

@@ -7,18 +7,13 @@
     - Black (Lowercase) - AI
 """
 
-from board import Board
-from minimax import Minimax
+from engine import ChessEngine
 
 
 def main() -> None:
     """
     Main function to run the chess game
     """
-
-    board = Board()
-    # move_generator = MoveGenerator(board)
-    # evaluator = Evaluator(board)
 
     print("Welcome to the ATLAS AI!")
     print("This is the Classical AI Chapter's Production Agent")
@@ -28,18 +23,10 @@ def main() -> None:
     print("       Starting New Game")
     print("================================")
 
-    print(board.print_board())
-    print(board.move_history)
+    engine = ChessEngine(depth=3)  # You can adjust depth for stronger/weaker AI
 
-    print(board.make_move(((6, 4), (4, 4))))  # Move white pawn from e2 to e4 - testing
-
-    # print(board.make_move(((1, 4), (3, 4))))  # Move black pawn from e7 to e5 - testing
-
-    # minimax testing
-    print("AI is thinking...")
-    print(Minimax(depth=3).find_best_move(board))
-
-    print(board.move_history)
+    # print board at the initial startup
+    print(engine.print_board())
 
     print("================================")
     print(" Game Over! Thanks for playing.")
