@@ -8,3 +8,16 @@
 """
 
 from typing import Optional, Tuple
+from engine import Engine
+from board import Move
+
+
+class ChessCLI:
+    """ Command Line INterface for the Chess Game """
+
+    def __init__(self, depth: int = 3) -> None:
+        self.engine = Engine(depth=depth)
+
+    # Main loop
+    def start(self) -> None:
+        print()
