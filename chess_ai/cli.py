@@ -64,11 +64,27 @@ class ChessCLI:
         
         return (from_pos, to_pos)
     
-    def _algebraic_to_index(self, sq: str) -> Optional[Tuple[int, int]]:
+    def _algebraic_to_index(self, square: str) -> Optional[Tuple[int, int]]:
         """ 
             Converts algebraic notation (e.g., e2) to board indices (row, col)
             Example:
             e2 -> (6, 4)  # row 6 (rank 2), col 4 (file e)
         """
+
+        if len(square) != 2:
+            return None
+        
+        file_char = square[0].lower()
+        rank_char = square[1]
+
+        if file_char < "a" or file_char > "h":
+            return None
+        
+        if rank_char < "1" or rank_char > "8":
+            return None
+        
+        col = ord(file_char) - ord("a")
+        row = 8 - int(rank_char)  # rank 1 is row 7, rank 8 is row 0
+
 
 
