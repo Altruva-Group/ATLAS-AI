@@ -6,8 +6,6 @@
 """
 
 from board import Board
-from move_generator import MoveGenerator
-from evaluation import Evaluator
 from minimax import Minimax
 
 
@@ -40,7 +38,7 @@ def main() -> None:
     print(Minimax(depth=3).find_best_move(board))
 
     print(board.move_history)
-    
+
     print("================================")
     print(" Game Over! Thanks for playing.")
     print("================================")
