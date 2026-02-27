@@ -132,7 +132,7 @@ class Board:
         """ Print the chess board """
         print("\n  a b c d e f g h")
         for i, row in enumerate(self.board):
-            print(8 - i, " ".join(row), i + 1)
+            print(8 - i, " ".join(row), 8 - i)
         print("  a b c d e f g h\n")
 
     # Turn Helpers

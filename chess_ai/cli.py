@@ -48,5 +48,27 @@ class ChessCLI:
 
     # Parsing user input
     def _parse_move(self, move_str: str) -> Optional[Move]:
-        """ Parse user input move string into Move format """
+        """ Converts user inputs like e2e4 to ((6, 4), (4, 4)) """
+
+        if len(move_str) != 4:
+            return None
+
+        from_sq = move_str[:2]
+        to_sq = move_str[2:]
+
+        from_pos = self._algebraic_to_index(from_sq)
+        to_pos = self._algebraic_to_index(to_sq)
+
+        if from_pos is None or to_pos is None:
+            return None
         
+        return (from_pos, to_pos)
+    
+    def _algebraic_to_index(self, sq: str) -> Optional[Tuple[int, int]]:
+        """ 
+            Converts algebraic notation (e.g., e2) to board indices (row, col)
+            Example:
+            e2 -> (6, 4)  # row 6 (rank 2), col 4 (file e)
+        """
+
+
