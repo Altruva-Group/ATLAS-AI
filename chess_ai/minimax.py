@@ -6,7 +6,7 @@
     - White is minimizing player (Human)
 """
 
-from typing import List, Tuple, List
+from typing import Optional, Tuple, List
 from board import Board, Move
 from move_generator import MoveGenerator
 from evaluation import Evaluator
@@ -17,4 +17,5 @@ class Minimax:
         self.max_depth = depth
 
     # Public API
-    
+    def find_best_move(self, board: Board) -> Optional[Move]:
+        """ Find the best move for the current player using Minimax """
