@@ -19,3 +19,16 @@ class Minimax:
     # Public API
     def find_best_move(self, board: Board) -> Optional[Move]:
         """ Find the best move for the current player using Minimax """
+        if not board.is_black_turn():
+            return None  # Minimax is designed for black (AI) to move
+        
+        best_score = float("-inf")
+        best_move: Optional[Move] = None
+
+        move_generator = MoveGenerator(board)
+        moves = move_generator.generate_all_moves()
+
+        if not moves:
+            return None  # No moves available, game over
+
+
