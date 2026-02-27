@@ -3,6 +3,8 @@
     - Character-based pieces
     - No sophisticated moves (castling, en passant, promotion, etc.)
     - Game ends when kind is captured.
+    - White (Uppercase) - Human
+    - Black (Lowercase) - AI
 """
 
 from board import Board
