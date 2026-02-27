@@ -66,9 +66,12 @@ class ChessCLI:
     
     def _algebraic_to_index(self, square: str) -> Optional[Tuple[int, int]]:
         """ 
-            Converts algebraic notation (e.g., e2) to board indices (row, col)
-            Example:
-            e2 -> (6, 4)  # row 6 (rank 2), col 4 (file e)
+            - Converts algebraic notation (e.g., e2) to board indices (row, col)
+            - Example:
+                e2 -> (6, 4)  # row 6 (rank 2), col 4 (file e)
+            - file: Column (a-h) -> 0-7
+            - rank: Row (1-8) -> 7-0 (inverted because rank 1 is bottom row)
+            - * Everything is rated from the White player's perspective (rank 1 is bottom, rank 8 is top)
         """
 
         if len(square) != 2:
@@ -85,6 +88,8 @@ class ChessCLI:
         
         col = ord(file_char) - ord("a")
         row = 8 - int(rank_char)  # rank 1 is row 7, rank 8 is row 0
+
+        return (row, col)
 
 
 
