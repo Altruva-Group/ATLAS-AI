@@ -2,9 +2,9 @@
     ATLAS Chess AI - Command Line Interface (CLI)
     - Provides a simple text-based interface to play against the AI.
     - Uses the ChessEngine to manage game state and AI moves.
-    - Human player (White) inputs moves in standard algebraic notation (e.g., e2e4).
+    - Human player (White) inputs moves in standard algebraic notation (e.g., e2e3).
     - AI player (Black) automatically responds after human move.
-    - Input format: "e2e4" (move piece from e2 to e4)
+    - Input format: "e2e3" (move piece from e2 to e3)
 """
 
 from typing import Optional, Tuple
@@ -23,7 +23,7 @@ class ChessCLI:
         """ Main loop to run the CLI """
 
         print("You are White (Uppercase), AI is Black (lowercase).")
-        print("Enter moves in format: e2e4 (move piece from e2 to e4)")
+        print("Enter moves in format: e2e3 (move pawn piece from e2 to e3)")
         print("Game ends when a king is captured. Good luck!\n")
 
         while not self.engine.is_game_over():
