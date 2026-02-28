@@ -7,7 +7,7 @@
     - Black (Lowercase) - AI
 """
 
-from engine import ChessEngine
+from cli import ChessCLI
 
 
 def main() -> None:
@@ -23,10 +23,9 @@ def main() -> None:
     print("       Starting New Game")
     print("================================")
 
-    engine = ChessEngine(depth=3)  # You can adjust depth for stronger/weaker AI
+    cli = ChessCLI(depth=3)  # Adjust depth for stronger/weaker AI
 
-    # print board at the initial startup
-    print(engine.print_board())
+    cli.start()
 
     print("================================")
     print(" Game Over! Thanks for playing.")
